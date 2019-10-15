@@ -5,6 +5,9 @@ import os
 from setuptools import setup, find_packages
 from shutil import copy2
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup_args = {
     'name': 'ndx-ecog',
     'version': '0.1.0',
@@ -12,6 +15,8 @@ setup_args = {
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
     'url': '',
+    'long_description': long_description,
+    'long_description_content_type': "text/markdown",
     'license': 'BSD 3-Clause',
     'install_requires': [
         'pynwb'
