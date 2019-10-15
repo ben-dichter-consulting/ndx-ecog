@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 import numpy as np
 import unittest2 as unittest
@@ -47,3 +48,5 @@ class ECoGSubjectTest(unittest.TestCase):
             np.testing.assert_allclose(
                 self.nwbfile.subject.cortical_surfaces.surfaces['test'].faces,
                 nwbfile.subject.cortical_surfaces.surfaces['test'].faces)
+
+        os.remove('test.nwb')
