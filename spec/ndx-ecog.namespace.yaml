@@ -8,6 +8,7 @@ namespaces:
   schema:
   - namespace: core
     neurodata_types:
-    - ElectricalSeries
+    - NWBDataInterface
+    - Subject
   - source: ndx-ecog.extensions.yaml
   version: 0.1.0

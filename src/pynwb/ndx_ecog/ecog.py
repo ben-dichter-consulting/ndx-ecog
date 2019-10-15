@@ -8,7 +8,7 @@ from pynwb.file import Subject
 from pynwb.base import Images
 
 
-@register_class('Surface', 'ecog')
+@register_class('Surface', 'ndx-ecog')
 class Surface(NWBContainer):
     __nwbfields__ = ('faces', 'vertices')
 
@@ -30,7 +30,7 @@ class Surface(NWBContainer):
         self.vertices = vertices
 
 
-@register_class('CorticalSurfaces', 'ecog')
+@register_class('CorticalSurfaces', 'ndx-ecog')
 class CorticalSurfaces(MultiContainerInterface):
     """
     Spike data for spike events detected in raw data
@@ -48,7 +48,7 @@ class CorticalSurfaces(MultiContainerInterface):
     __help = "triverts for cortical surfaces"
 
 
-@register_class('ECoGSubject', 'ecog')
+@register_class('ECoGSubject', 'ndx-ecog')
 class ECoGSubject(Subject):
 
     __nwbfields__ = ({'name': 'cortical_surfaces', 'child': True},

@@ -11,7 +11,7 @@ class ECoGSubjectTest(unittest.TestCase):
 
     def setUp(self):
         self.vertices = np.random.randn(20, 3)
-        self.faces = np.random.randint(0, 20, (10, 3))
+        self.faces = np.random.randint(0, 20, (10, 3)).astype('uint')
         self.nwbfile = NWBFile('description', 'id', datetime.now().astimezone())
 
     def test_init_ecog_subject(self):

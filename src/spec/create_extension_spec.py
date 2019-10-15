@@ -4,7 +4,7 @@ from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, NWBAttributeSpec, NWBD
 # TODO: import the following spec classes as needed
 # from pynwb.spec import NWBDatasetSpec, NWBLinkSpec, NWBDtypeSpec, NWBRefSpec
 
-from .export_spec import export_spec
+from export_spec import export_spec
 
 
 def main():
