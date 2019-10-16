@@ -10,7 +10,7 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         doc='An NWB extension for storing the cortical surface of subjects in ECoG experiments.',
         name='ndx-ecog',
-        version='0.1.0',
+        version='0.1.1',
         author=list(map(str.strip, 'Ben Dichter'.split(','))),
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
