@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, NWBAttributeSpec, NWBDatasetSpec
-# TODO: import the following spec classes as needed
-# from pynwb.spec import NWBDatasetSpec, NWBLinkSpec, NWBDtypeSpec, NWBRefSpec
+import os.path
 
-from export_spec import export_spec
+from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec, NWBDatasetSpec
 
 
 def main():
@@ -65,8 +63,9 @@ def main():
 
     new_data_types = [ecog_subject]
 
-    # export the spec to namespace and extensions files in the spec folder
-    export_spec(ns_builder, new_data_types)
+    # export the spec to yaml files in the spec folder
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
+    export_spec(ns_builder, new_data_types, output_dir)
 
 
 if __name__ == "__main__":
