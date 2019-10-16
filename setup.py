@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setup_args = {
     'name': 'ndx-ecog',
-    'version': '0.1.0',
+    'version': '0.1.1',
     'description': 'An NWB extension for storing the cortical surface of subjects in ECoG experiments',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
@@ -19,7 +19,7 @@ setup_args = {
     'long_description_content_type': "text/markdown",
     'license': 'BSD 3-Clause',
     'install_requires': [
-        'pynwb'
+        'pynwb>=1.1.2'
     ],
     'packages': find_packages('src/pynwb'),
     'package_dir': {'': 'src/pynwb'},

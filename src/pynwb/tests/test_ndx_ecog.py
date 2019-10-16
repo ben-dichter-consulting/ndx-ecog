@@ -1,8 +1,8 @@
 from datetime import datetime
 import os
+import unittest
 
 import numpy as np
-import unittest2 as unittest
 from pynwb import NWBFile, NWBHDF5IO
 
 from ndx_ecog import ECoGSubject, CorticalSurfaces

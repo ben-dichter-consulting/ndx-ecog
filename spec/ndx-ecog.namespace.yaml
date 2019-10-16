@@ -3,7 +3,7 @@ namespaces:
   - Ben Dichter
   contact:
   - ben.dichter@gmail.com
-  doc: An NWB extension for storing the cortical surface of subjects in ECoG experiments
+  doc: An NWB extension for storing the cortical surface of subjects in ECoG experiments.
   name: ndx-ecog
   schema:
   - namespace: core
@@ -11,4 +11,4 @@ namespaces:
     - NWBDataInterface
     - Subject
   - source: ndx-ecog.extensions.yaml
-  version: 0.1.0
+  version: 0.1.1
