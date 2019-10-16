@@ -14,7 +14,7 @@ groups:
       neurodata_type_inc: NWBDataInterface
       doc: Group representing the faces and vertices that compose a brain cortical
         surface.
-      quantity: +
+      quantity: '+'
       datasets:
       - name: faces
         dtype: uint32
