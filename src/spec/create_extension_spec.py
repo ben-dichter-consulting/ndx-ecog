@@ -47,7 +47,7 @@ def main():
         quantity='?',
         groups=[NWBGroupSpec(
             neurodata_type_inc='Surface',
-            quantity='+',
+            quantity='*',
             doc='Group representing the faces and vertices that compose a brain cortical surface.',
         )]
     )
@@ -58,8 +58,14 @@ def main():
         name='subject',
         doc='Extension of subject that holds cortical surface data.',
         groups=[
-            NWBGroupSpec(neurodata_type_inc='CorticalSurfaces'),
-            NWBGroupSpec(neurodata_type_inc='Images')]
+            NWBGroupSpec(neurodata_type_inc='CorticalSurfaces',
+                         doc='Group representing the faces and vertices '
+                             'that compose a brain cortical surface.',
+                         quantity='?'),
+            NWBGroupSpec(neurodata_type_inc='Images',
+                         doc='Images of the brain',
+                         quantity='?')
+        ]
     )
 
     new_data_types = [surface, surfaces, ecog_subject]

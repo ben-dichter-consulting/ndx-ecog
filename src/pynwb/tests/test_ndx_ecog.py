@@ -5,7 +5,7 @@ import unittest
 import numpy as np
 from pynwb import NWBFile, NWBHDF5IO
 
-from ndx_ecog import ECoGSubject, CorticalSurfaces
+from ndx_ecog import ECoGSubject, CorticalSurfaces, Surface
 
 
 class ECoGSubjectTest(unittest.TestCase):
@@ -17,24 +17,26 @@ class ECoGSubjectTest(unittest.TestCase):
 
     def test_init_ecog_subject(self):
 
-        cortical_surfaces = CorticalSurfaces()
-        cortical_surfaces.create_surface('test', vertices=self.vertices, faces=self.faces)
+        cortical_surfaces = CorticalSurfaces(surfaces=[
+            Surface('test', vertices=self.vertices, faces=self.faces)
+        ])
         self.nwbfile.subject = ECoGSubject(subject_id='id', cortical_surfaces=cortical_surfaces)
-
-        np.testing.assert_allclose(self.nwbfile.subject.cortical_surfaces.surfaces['test'].vertices, self.vertices)
-        np.testing.assert_allclose(self.nwbfile.subject.cortical_surfaces.surfaces['test'].faces, self.faces)
+        np.testing.assert_allclose(self.nwbfile.subject.cortical_surfaces['test'].vertices, self.vertices)
+        np.testing.assert_allclose(self.nwbfile.subject.cortical_surfaces['test'].faces, self.faces)
 
     def test_add_cs_to_ecog_subject(self):
 
-        cortical_surfaces = CorticalSurfaces()
-        cortical_surfaces.create_surface('test', vertices=self.vertices, faces=self.faces)
+        cortical_surfaces = CorticalSurfaces(surfaces=[
+            Surface('test', vertices=self.vertices, faces=self.faces)
+        ])
         self.nwbfile.subject = ECoGSubject()
         self.nwbfile.subject.cortical_surfaces = cortical_surfaces
 
     def test_io(self):
 
-        cortical_surfaces = CorticalSurfaces()
-        cortical_surfaces.create_surface('test', vertices=self.vertices, faces=self.faces)
+        cortical_surfaces = CorticalSurfaces(surfaces=[
+            Surface('test', vertices=self.vertices, faces=self.faces)
+        ])
         self.nwbfile.subject = ECoGSubject(subject_id='id', cortical_surfaces=cortical_surfaces)
 
         with NWBHDF5IO('test.nwb', 'w') as io:
