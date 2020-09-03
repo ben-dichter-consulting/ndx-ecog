@@ -10,18 +10,19 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         doc='An NWB extension for storing the cortical surface of subjects in ECoG experiments.',
         name='ndx-ecog',
-        version='0.1.1',
+        version='0.2.1',
         author=list(map(str.strip, 'Ben Dichter'.split(','))),
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
 
-    ns_builder.include_type('NWBDataInterface', namespace='core')
-    ns_builder.include_type('Subject', namespace='core')
+    core_ndtypes = ['NWBDataInterface', 'Subject', 'Images']
+    for ndtype in core_ndtypes:
+        ns_builder.include_type(ndtype, namespace='core')
 
     surface = NWBGroupSpec(
         neurodata_type_def='Surface',
         neurodata_type_inc='NWBDataInterface',
-        quantity='+',
+        quantity='?',
         doc='Group representing the faces and vertices that compose a brain cortical surface.',
         datasets=[  # set Faces and Vertices as elements of the Surfaces neurodata_type
             NWBDatasetSpec(
@@ -44,24 +45,24 @@ def main():
         name='cortical_surfaces',
         doc='Group that holds Surface types.',
         quantity='?',
-        groups=[surface]
+        groups=[NWBGroupSpec(
+            neurodata_type_inc='Surface',
+            quantity='+',
+            doc='Group representing the faces and vertices that compose a brain cortical surface.',
+        )]
     )
-
-    images = NWBGroupSpec(
-        neurodata_type_inc='Images',
-        doc="Images of subject's brain.",
-        name='images',
-        quantity='?')
 
     ecog_subject = NWBGroupSpec(
         neurodata_type_def='ECoGSubject',
         neurodata_type_inc='Subject',
         name='subject',
         doc='Extension of subject that holds cortical surface data.',
-        groups=[surfaces, images]
+        groups=[
+            NWBGroupSpec(neurodata_type_inc='CorticalSurfaces'),
+            NWBGroupSpec(neurodata_type_inc='Images')]
     )
 
-    new_data_types = [ecog_subject]
+    new_data_types = [surface, surfaces, ecog_subject]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
