@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setup_args = {
     'name': 'ndx-ecog',
-    'version': '0.1.1',
+    'version': '0.2.1',
     'description': 'An NWB extension for storing the cortical surface of subjects in ECoG experiments',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
