@@ -20,4 +20,4 @@ if not os.path.exists(ndx_ecog_specpath):
 # Load the namespace
 load_namespaces(ndx_ecog_specpath)
 
-from .ecog import ECoGSubject, CorticalSurfaces, Surface
+from .ecog import ECoGSubject, CorticalSurfaces, Surface, Parcellation, Parcellations

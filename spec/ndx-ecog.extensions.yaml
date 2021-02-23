@@ -1,3 +1,19 @@
+datasets:
+- neurodata_type_def: Parcellation
+  neurodata_type_inc: NWBData
+  dims:
+  - vertex_index
+  shape:
+  - null
+  doc: a parcellation of the surface
+  attributes:
+  - name: labels
+    dtype: text
+    shape:
+    - null
+    doc: if the dtype of the parcellation is uint, they are categories and these are
+      the labels
+    required: false
 groups:
 - neurodata_type_def: Surface
   neurodata_type_inc: NWBDataInterface
@@ -22,6 +38,10 @@ groups:
     - null
     - 3
     doc: Vertices for surface, points in 3D space.
+  groups:
+  - neurodata_type_inc: Parcellations
+    doc: parcellations for this surface
+    quantity: '?'
 - neurodata_type_def: CorticalSurfaces
   neurodata_type_inc: NWBDataInterface
   name: cortical_surfaces
@@ -42,3 +62,11 @@ groups:
   - neurodata_type_inc: Images
     doc: Images of the brain
     quantity: '?'
+- neurodata_type_def: Parcellations
+  neurodata_type_inc: NWBDataInterface
+  default_name: parcellations
+  doc: parcellations of this surface
+  datasets:
+  - neurodata_type_inc: Parcellation
+    doc: a parcellation of this surface
+    quantity: +

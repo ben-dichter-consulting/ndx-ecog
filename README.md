@@ -54,12 +54,20 @@ generateExtension('/path/to/ndx-ecog/spec/ndx-ecog.namespace.yaml');
 
 write:
 ```matlab
-cortical_surfaces = types.ecog.CorticalSurfaces;
+cortical_surfaces = types.ndx_ecog.CorticalSurfaces;
 
-%%% loop me
-    surf = types.ecog.Surface('faces', faces, 'vertices', vertices);
-    cortical_surfaces.surface.set(surface_name, surf);
-%%%
+parcellations = types.ndx_ecog.Parcellations();
+parcellation = types.ndx_ecog.Parcellation( ... 
+    'data', randi(5, 1, 20), ... 
+    'labels', {'a','b', 'c', 'd', 'e'});
+parcellations.parcellation.set('my_map', parcellation);
+% can add more parcellations
+surf = types.ndx_ecog.Surface( ... 
+    'faces', randn(3, 20), ... 
+    'vertices', randi(20, 3, 40), ...
+    'parcellations', parcellations); % the parcellations arg is optional
+cortical_surfaces.surface.set('my_surface', surf);
+% can add more surface objects
 
-file.subject = types.ecog.ECoGSubject(name, cortical_surfaces);
+file.subject = types.ndx_ecog.ECoGSubject('subject', cortical_surfaces);
 ```
