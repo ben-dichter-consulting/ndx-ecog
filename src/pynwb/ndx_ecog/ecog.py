@@ -16,7 +16,8 @@ def surface_init(self, name, vertices, faces, parcellations):
     if np.min(faces) < 0:
         raise ValueError('faces hold indices of vertices and should be non-negative')
     Surface.__init__(self, name, vertices, faces, parcellations)
-
+    
+Surface.__init__ = surface_init
 
 CorticalSurfaces = get_class('CorticalSurfaces', 'ndx-ecog')
 ECoGSubject = get_class('ECoGSubject', 'ndx-ecog')
