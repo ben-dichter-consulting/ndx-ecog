@@ -54,20 +54,30 @@ generateExtension('/path/to/ndx-ecog/spec/ndx-ecog.namespace.yaml');
 
 write:
 ```matlab
+nwb = NwbFile( ...
+    'session_description', 'mouse in open exploration', ...
+    'identifier', 'Mouse5_Day3', ...
+    'session_start_time', datetime(2018, 4, 25, 2, 30, 3) ...
+);
+
 cortical_surfaces = types.ndx_ecog.CorticalSurfaces;
 
 parcellations = types.ndx_ecog.Parcellations();
 parcellation = types.ndx_ecog.Parcellation( ... 
     'data', randi(5, 1, 20), ... 
-    'labels', {'a','b', 'c', 'd', 'e'});
+    'labels', {'a','b', 'c', 'd', 'e'} ...
+);
 parcellations.parcellation.set('my_map', parcellation);
 % can add more parcellations
 surf = types.ndx_ecog.Surface( ... 
     'vertices', randn(3, 20), ... 
     'faces', randi(20, 3, 40), ...
-    'parcellations', parcellations); % the parcellations arg is optional
+    'parcellations', parcellations ... % the parcellations arg is optional
+);
 cortical_surfaces.surface.set('my_surface', surf);
 % can add more surface objects
 
-file.subject = types.ndx_ecog.ECoGSubject('subject', cortical_surfaces);
+nwb.general_subject = types.ndx_ecog.ECoGSubject('subject', cortical_surfaces);
+
+nwbExport(nwb, 'test_123.nwb');
 ```
